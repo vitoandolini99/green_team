@@ -1,1 +1,9 @@
-<h1>spratek</h1>
+{% set percentage = 40 %}
+{% set barWidth = percentage * 2 %}
+<h1>cesky jazyk maturita</h1>
+
+{# simple percentage bar -> width needs to be 100 times greater than multiplication value of percentage in the code above#}
+
+<div style="width: 200px; height: 20px; border: 1px solid black;">
+    <div style="width: {{ barWidth }}px; height: 100%; background-color: green; float: left;"></div>
+</div>
