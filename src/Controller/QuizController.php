@@ -1,5 +1,5 @@
 <?php
-// src/Controller/Controller.php
+// src/Controller/MainController.php
 namespace App\Controller;
 
 use Doctrine\Persistence\ManagerRegistry;
@@ -8,10 +8,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class Controller extends AbstractController{
-
-    #[Route('/', name: 'homepage')]
-    public function home(): Response {
-        return $this->render('index.html.twig');
-    }    
+class QuizController extends AbstractController{
+    
+    #[Route('/quiz', name: 'quizexample')]
+    public function quizexample(): Response {
+        return $this->render('quiz.html.twig');
+    }
 }

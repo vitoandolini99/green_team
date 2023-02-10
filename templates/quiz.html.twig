@@ -1,0 +1,104 @@
+{% set questions = [
+    {
+        "id": 1,
+        "question": " 4 + 1 * 3 ",
+        "answers": [
+            {
+                "answer": "7",
+                "isCorrect": true
+            },
+            {
+                "answer": "15",
+                "isCorrect": false
+            },
+            {
+                "answer": "12",
+                "isCorrect": false
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "question": "php?",
+        "answers": [
+            {
+                "answer": "yess",
+                "isCorrect": false
+            },
+            {
+                "answer": "yes",
+                "isCorrect": false
+            },
+            {
+                "answer": "no",
+                "isCorrect": true
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "question": "ahoj",
+        "answers": [
+            {
+                "answer": "hello",
+                "isCorrect": true
+            },
+            {
+                "answer": "i love",
+                "isCorrect": false
+            },
+            {
+                "answer": "chicken",
+                "isCorrect": false
+            }
+        ]
+    }
+] %}
+
+{% set minimalPercentage = 70 %}
+{% set totalQuestions = questions|length %}
+{% set correctAnswers = 0 %}
+
+
+<form action="" method="post">
+    {% for question in questions %}
+        <div>
+            {{ question.question }}
+            <br><br>
+            {% for answer in question.answers %}
+                <input type="radio" name="{{ question.id }}" value="{{ answer.answer }}"> {{ answer.answer }}
+                <br>
+            {% endfor %}
+        </div>
+        <br><br>
+    {% endfor %}
+
+    <input type="submit" value="Submit">
+</form>
+
+{% if app.request.getMethod() == "POST" %}
+    {% for question in questions %}
+        {% set selectedAnswer = app.request.get(question.id) %}
+        {% for answer in question.answers %}
+            {% if answer.answer == selectedAnswer and answer.isCorrect %}
+                {% set correctAnswers = correctAnswers + 1 %}
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+
+    {% set percentage = (correctAnswers / totalQuestions) * 100 %}
+
+    <div>
+        Percentage: {{ percentage }}%
+    </div>
+
+    {% if percentage >= minimalPercentage %}
+        <div>
+            Congratulations, you passed the quiz!
+        </div>
+    {% else %}
+        <div>
+            Sorry, you did not pass the quiz.
+        </div>
+    {% endif %}
+{% endif %}
