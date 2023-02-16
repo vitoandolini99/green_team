@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,53 +15,35 @@ class SecurityController extends AbstractController{
     #[Route('/register', name: 'register')]
     public function register(Request $request)
     {
-        // create user (missing db)
-        //$user = new User();
-
-        // get data
         $username = $request->request->get('username');
         $password = $request->request->get('password');
 
-        /*
-        // set data
-        $user->setUsername($username);
-        $user->setPassword($passwordEncoder->encodePassword($user, $password));
-
-        // save to DB
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->persist($user);
-        $entityManager->flush();
-
-        */
-        
         return $this->redirectToRoute('login');
     }
 
     #[Route('/login', name: 'login')]
-    public function login(Request $request)
+    public function login(Request $request, SessionInterface $session)
     {
-        // get data
-        $username = $request->request->get('username');
-        $password = $request->request->get('password');
-
-        // check for user in DB (no db)
-        $user = $this->getDoctrine()
-            ->getRepository(User::class)
-            ->findOneBy(['username' => $username]);
-
-        if (!$user) {
-            //TODO error
+        if($session->get('username')) {
+            return $this->redirectToRoute('homepage');
         }
 
-        // check password match
-        if (!$passwordEncoder->isPasswordValid($user, $password)) {
-            //TODO error
-        }
+        if($request->isMethod('POST')) {
+            $username = $request->request->get('username');
+            $password = $request->request->get('password');
 
-        // save user sesstion (idk if works)
-        $request->getSession()->set('user', $user);
-        
-        return $this->redirectToRoute('profile');
+            if($username === "username" && $password === "password") {
+                $session->set('username', $username);
+                return $this->redirectToRoute('homepage');
+            } else {
+                $this->addFlash('error', 'Invalid login credentials.');
+            }
+        }
+        return $this->render('login.html.twig');
+    }
+
+    public function logout(Request $request){
+
     }
 
 }
