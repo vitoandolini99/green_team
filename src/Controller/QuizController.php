@@ -37,20 +37,19 @@ class QuizController extends AbstractController{
 
     #[Route('/certificate', name: 'certificate')]
     public function certificateGenerator(): Response {
-        $name = 'John Doe';
+        $name = 'UZIVATEL';
         $percentage = 85;
 
         $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
-        $pdf->SetCreator('Certificate Generator');
-        $pdf->SetAuthor('John Doe');
-        $pdf->SetTitle('Certificate of Completion');
-        $pdf->SetSubject('Certificate');
+        $pdf->SetCreator($name);
+        $pdf->SetAuthor('Certificate Generator');
+        $pdf->SetTitle('Certifikát o splnění kvízu');
 
         $pdf->SetMargins(0, 30, 0);
         $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
         $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
 
-        $img_file = 'public/images/certificate_background.jpeg';
+        $img_file = 'certificate_background.jpeg';
         $pdf->Image($img_file, 0, 0, 210, 297, '', '', '', false, 300, '', false, false, 0);
 
 
@@ -58,16 +57,18 @@ class QuizController extends AbstractController{
         $pdf->SetFont('helvetica', 'B', 20);
         $pdf->SetTextColor(0, 0, 0);
 
-        $pdf->Cell(0, 15, 'Certificate of Completion', 0, 1, 'C');
+        $pdf->Cell(0, 15, 'Certifikát o splnění kvízu', 0, 1, 'C');
         $pdf->Ln(10);
         $pdf->SetFont('helvetica', 'B', 16);
 
-        $pdf->Cell(0, 15, 'This certificate is awarded to ' . $name . ' for successfully completing the course with a score of ' . $percentage . '%', 0, 1, 'C');
+        $pdf->Cell(0, 15, 'Tento certifikát je přidělen uživateli ' . $name , 0, 1, 'C');
+        $pdf->Cell(0, 15, 'za úspěšné absolvání potřebných kurzů! ', 0, 1, 'C');
+        $pdf->Cell(0, 15, $percentage . '%', 0, 1, 'C');
         $pdf->Ln(20);
         $pdf->SetFont('helvetica', 'B', 14);
 
         $pdf->Cell(0, 15, '_______________________________', 0, 1, 'C');
-        $pdf->Cell(0, 10, 'Authorized Signature', 0, 1, 'C');
+        $pdf->Cell(0, 10, 'Podpis', 0, 1, 'C');
 
         $response = new Response();
         $response->headers->set('Content-Type', 'application/pdf');
