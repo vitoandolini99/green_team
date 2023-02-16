@@ -7,22 +7,21 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Encoder\EncoderFactory;
-use Symfony\Component\Security\Core\Encoder\PasswordEncoderInterface;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 // TODO use App\Entity\User;
 
 class SecurityController extends AbstractController{
+
     #[Route('/register', name: 'register')]
-    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder)
+    public function register(Request $request)
     {
         // create user (missing db)
-        $user = new User();
+        //$user = new User();
 
         // get data
         $username = $request->request->get('username');
         $password = $request->request->get('password');
 
+        /*
         // set data
         $user->setUsername($username);
         $user->setPassword($passwordEncoder->encodePassword($user, $password));
@@ -32,11 +31,13 @@ class SecurityController extends AbstractController{
         $entityManager->persist($user);
         $entityManager->flush();
 
+        */
+        
         return $this->redirectToRoute('login');
     }
 
     #[Route('/login', name: 'login')]
-    public function login(Request $request, UserPasswordEncoderInterface $passwordEncoder)
+    public function login(Request $request)
     {
         // get data
         $username = $request->request->get('username');
