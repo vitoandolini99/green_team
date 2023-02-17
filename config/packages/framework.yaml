@@ -18,6 +18,8 @@ framework:
     php_errors:
         log: true
 
+    esi: true
+
 when@test:
     framework:
         test: true
