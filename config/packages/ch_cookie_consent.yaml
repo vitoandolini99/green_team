@@ -1,2 +1,7 @@
 ch_cookie_consent: 
     categories: ['analytics', 'tracking', 'social_media', 'marketing']
+    theme: 'light'
+    simplified: false
+    csrf_protection: true
+    position: 'top'
+    http_only: true
