@@ -11,6 +11,9 @@
 {# need to evaluate percentage #}
 {% set percentage = 40 %}
 {% set barWidth = percentage * 2 %}
+
+{{ render_esi(path('ch_cookie_consent.show')) }}
+{{ render_esi(path('ch_cookie_consent.show_if_cookie_consent_not_set')) }}
 <header>
     <br>
     <div class="row">
