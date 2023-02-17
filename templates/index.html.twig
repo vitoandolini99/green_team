@@ -1,48 +1,57 @@
 <!DOCTYPE html>
-<html>
+<html lang="cs">
 <head>
     <meta charset="UTF-8">
     <title>Homepage</title>
+    <link rel="stylesheet" href="https://kit.fontawesome.com/9a55589d18.css" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/9a55589d18.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 </head>
+<body>
 {# need to evaluate percentage #}
 {% set percentage = 40 %}
 {% set barWidth = percentage * 2 %}
 <header>
-    <nav style="text-align: right;">
-        <!-- User account navigation control - view account, logout -->
-        <p>random bullshit go</p>
-    </nav>
+    <br>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 text-center">
+            <h1 id="homepage-header">Český jazyk maturita</h1>
+        </div>
+        <div class="col-md-1 text-end">
+            <!-- User account navigation control - view account, logout -->
+            <i class="fa-solid fa-user fa-2x"></i>
+        </div>
+    </div>
 </header>
 
-<h1 id="homepage-header">Český jazyk maturita</h1>
-
 <!-- Main section of the page, progressbar -->
-<main id="homepage-main">
-    <span id="progressbar-container">
-    <h3 id="your-progress">Tvůj progres</h3>
+<main class="homepage-main">
+    <span class="progressbar-container">
+    <h3 class="your-progress">Tvůj progres</h3>
     {# simple percentage bar -> width needs to be 100 times greater than multiplication value of percentage in the code above#}
-        <div id="progressbar-box" style="width: 200px; height: 20px; border: 1px solid black;">
-            <div id="progressbar-line" style="width: {{ barWidth }}px; height: 100%; background-color: green; float: left;"></div>
+        <div class="progressbar-box" style="width: 200px; height: 20px; border: 1px solid black;">
+            <div class="progressbar-line" style="width: {{ barWidth }}px; height: 100%; background-color: green; float: left;"></div>
         </div>
     </span>
 </main>
-
 <!-- Main menu buttons -->
 <!-- TODO/suggestion: Remove all buttons/links and add them into a collapsible menu on the side of the page instead, eventually fill the page with some text -->
 <section>
-    <span>
+    <span style="padding: 10px">
         <div>
-            <button type="button">Kvízy</button>
+            <a class="btn btn-dark" id="t1" href="prvak" style="margin-left: 15px">Prvák</a>
         </div>
         <div>
-            <button type="button">Témata</button>
+            <a class="btn btn-dark" id="t2" href="#" style="margin-left: 15px; margin-top: 20px">Druhák</a>
         </div>
         <div>
-            <button type="button">Some other shi</button>
+            <a class="btn btn-dark" id="t3" href="#" style="margin-left: 15px; margin-top: 20px">Třeťák</a>
         </div>
         <div>
-            <button type="button">O nás</button>
+            <a class="btn btn-dark" id="t4" href="#" style="margin-left: 15px; margin-top: 20px">Čtvrťák</a>
         </div>
     </span>
-</section
+</section>
+</body>
 </html>

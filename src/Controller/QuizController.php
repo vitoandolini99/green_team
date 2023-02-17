@@ -11,7 +11,7 @@ use TCPDF;
 
 class QuizController extends AbstractController{
     
-    #[Route('/quiz', name: 'quizexample')]
+    #[Route('/vyrazy', name: 'quizexample')]
     public function quizexample(): Response {
         $csvFilePath = $this->getParameter('kernel.project_dir') . '/public/csv/basnickevyrazy.csv';
         $data = array_map('str_getcsv', file($csvFilePath));
@@ -30,7 +30,7 @@ class QuizController extends AbstractController{
             }
         }
 
-        return $this->render('quiz.html.twig', [
+        return $this->render('themes/prvak_quizzes/vyrazy.html.twig', [
             'questions' => $questions,
         ]);
     }
