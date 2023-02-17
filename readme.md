@@ -52,3 +52,4 @@
 42. Hostnutí stránky
 43. Provedení bug testu hostnuté stránky
 44. Jsou-li nějaké nalezené: shození stránky, oprava bugů, znovu načíst
+https://github.com/Harborn-digital/cookie-consent-bundle
