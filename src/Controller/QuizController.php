@@ -13,6 +13,8 @@ class QuizController extends AbstractController{
     
     #[Route('/vyrazy', name: 'quizexample')]
     public function quizexample(): Response {
+        $this->forward('App\Controller\CookieController::quizAccessCount');
+        
         $csvFilePath = $this->getParameter('kernel.project_dir') . '/public/csv/basnickevyrazy.csv';
         $data = array_map('str_getcsv', file($csvFilePath));
         array_shift($data);
