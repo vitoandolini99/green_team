@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e330b4a086a3312ee3a495b529445adb",
+    "content-hash": "f8be1a297f040e5ea347563afca69ada",
     "packages": [
         {
             "name": "connectholland/cookie-consent-bundle",

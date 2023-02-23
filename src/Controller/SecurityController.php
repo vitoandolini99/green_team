@@ -8,7 +8,8 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-// TODO use App\Entity\User;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInteuse;
+use App\Entity\User;
 
 class SecurityController extends AbstractController{
 
@@ -27,18 +28,22 @@ class SecurityController extends AbstractController{
         if($session->get('username')) {
             return $this->redirectToRoute('homepage');
         }
-
-        if($request->isMethod('POST')) {
+        if ($request->isMethod('POST')) {
             $username = $request->request->get('username');
             $password = $request->request->get('password');
 
-            if($username === "username" && $password === "password") {
-                $session->set('username', $username);
+            $userRepository = $this->getDoctrine()->getRepository(User::class);
+            $user = $userRepository->findOneBy(['username' => $username]);
+
+            if ($user && $passwordEncoder->isPasswordValid($user, $password)) {
+                $session->set('username', $user->getUsername());
                 return $this->redirectToRoute('homepage');
             } else {
                 $this->addFlash('error', 'Invalid login credentials.');
             }
+            return $this->redirectToRoute('homepage');
         }
+
         return $this->render('login.html.twig');
     }
 
