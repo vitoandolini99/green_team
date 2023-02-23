@@ -25,20 +25,33 @@
 <header class="navbar-dark bg-dark">
     <br>
     <div class="row">
-        <div class="col-md-2">
+        <div class="col-md-3">
             <a href="{{ path('homepage') }}">
-            <img src="{{ asset('images/white-arrow.ico') }}" alt="arrow" width="30" height="30" style="margin-left: 50px;">
+                <i class="fa-solid fa-arrow-left-long fa-2x" style="margin-left: 50px; color: white;"></i>
             </a>
         </div>
-        <div class="col-md-8 text-center">
+        <div class="col-md-6 text-center">
             <h1 class="text-light">Kvízy - prvák</h1>
         </div>
-        <div class="col-md-1 text-end">
+        <div class="col-md-1 text-center">
             <!-- User account navigation control - view account, logout -->
             <a href="">
             <i class="fa-solid fa-user fa-2x"></i>
             </a>
         </div>
+        <div class="col-md-1 text-center">
+            {% if is_granted('IS_AUTHENTICATED') %}
+                <h2>{{ app.user.username }}</h2>
+            {% endif %}
+        </div>
+        <div class="col-md-1 text-start">
+            {% if is_granted('IS_AUTHENTICATED') %}
+                <a href="logout">
+                    <i class="fa-solid fa-right-from-bracket fa-2x" ></i>
+                </a>
+            {% endif %}
+        </div>
+
     </div>
 </header>
     <main>

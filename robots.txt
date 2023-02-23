@@ -1,0 +1,12 @@
+User-agent: larbin
+Disallow: /
+
+User-agent: niki-bot
+Disallow: /
+
+User-agent: *
+Crawl-delay: 5
+Disallow: /dokumenty
+Disallow: /download
+Disallow: /icon
+Disallow: /lib
