@@ -45,6 +45,7 @@
 {% set minimalPercentage = 70 %}
 {% set totalQuestions = questionsArray|length %}
 {% set correctAnswers = 0 %}
+{% set percentage = 0 %}
 
 {% if questionsArray is empty %}
 <p>No questions found.</p>
@@ -65,7 +66,8 @@
     </div>
 </header>
 <main>
-<form action="vysledek" method="post">
+
+<form action="{{ path('result') }}" method="post">
     {% for question in questionsArray %}
         <div class="form-check" style="margin-top: 50px;">
             <label for="{{ question.id }}" style="font-weight: bold">
@@ -79,35 +81,21 @@
         <br><br>
     {% endfor %}
 
+    {% if app.request.getMethod() == "POST" %}
+        {% for question in questionsArray %}
+            {% set selectedAnswer = app.request.get(question.id) %}
+            {% for answer in question.answers %}
+                {% if answer.answer == selectedAnswer and answer.isCorrect %}
+                    {% set correctAnswers = correctAnswers + 1 %}
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+        {% set percentage = (correctAnswers / totalQuestions) * 100 %}
+    {% endif %}
+
+    <input type="hidden" name="percentage" value="{{ percentage }}">
     <input type="submit" value="Submit" class="btn btn-dark">
 </form>
-
-{% if app.request.getMethod() == "POST" %}
-    {% for question in questionsArray %}
-        {% set selectedAnswer = app.request.get(question.id) %}
-        {% for answer in question.answers %}
-            {% if answer.answer == selectedAnswer and answer.isCorrect %}
-                {% set correctAnswers = correctAnswers + 1 %}
-            {% endif %}
-        {% endfor %}
-    {% endfor %}
-
-    {% set percentage = (correctAnswers / totalQuestions) * 100 %}
-
-    <div>
-        Percentage: {{ percentage }}%
-    </div>
-
-    {% if percentage >= minimalPercentage %}
-        <div>
-            Congratulations, you passed the quiz!
-        </div>
-    {% else %}
-        <div>
-            Sorry, you did not pass the quiz.
-        </div>
-    {% endif %}
-{% endif %}
 </main>
 </body>
 </html>
