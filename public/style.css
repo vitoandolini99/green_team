@@ -3,7 +3,24 @@ html{
     height: 100%;
 }
 
+body{
+    background-color: #121212;
+    color: white;
+}
+
 main{
     width: 1000px;
     margin:auto;
+}
+
+.license-container{
+    max-width: 500px;
+    margin: auto;
+    margin-top: 30%;
+    text-align: center;
+}
+
+.form-check-input:checked{
+    background-color: #343a40;
+    border-color: white;
 }

@@ -14,22 +14,25 @@
 {% set barWidth = percentage * 2 %}
 
 {{ render_esi(path('ch_cookie_consent.show_if_cookie_consent_not_set')) }}
-<header class="navbar-dark bg-dark" style="width: 100%">
+<header class="navbar-dark bg-dark">
     <br>
     <div class="row">
-        <div class="col-md-2"></div>
+        <div class="col-md-2">
+        </div>
         <div class="col-md-8 text-center">
-            <h1 id="homepage-header" class="text-light">Český jazyk maturita</h1>
+            <h1 class="text-light">Výběr maturitních otázek z českého jazyka</h1>
         </div>
         <div class="col-md-1 text-end">
             <!-- User account navigation control - view account, logout -->
+            <a href="">
             <i class="fa-solid fa-user fa-2x"></i>
+            </a>
         </div>
     </div>
 </header>
 
 <!-- Main section of the page, progressbar -->
-<main class="homepage-main" style="width: 1000px; margin: auto; background-color: #ADD8E6;">
+<main class="homepage-main" style="width: 1000px;">
     <span class="progressbar-container">
     <h3 class="your-progress">Tvůj progres</h3>
     {# simple percentage bar -> width needs to be 100 times greater than multiplication value of percentage in the code above#}
