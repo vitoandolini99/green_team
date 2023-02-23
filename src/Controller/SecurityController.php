@@ -10,7 +10,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use App\Entity\User;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController{
 
@@ -20,6 +22,12 @@ class SecurityController extends AbstractController{
         $this->entityManager = $entityManager;
     }
 
+    #[IsGranted('ROLE_ADMIN')]
+    public function adminDashboard(): Response
+    {
+
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED');
+    }
 
     #[Route('/register', name: 'register')]
     public function reg(UserPasswordHasherInterface $passwordHasher, ManagerRegistry $doctrine, Request $request): Response
@@ -34,6 +42,8 @@ class SecurityController extends AbstractController{
             $psswd = $request->request->get('password');;
             $user->setPassword($psswd);
 
+            $user->setRoles(['ROLE_USER']);
+
             $entityManager->persist($user);
             $entityManager->flush();
         }
@@ -42,32 +52,19 @@ class SecurityController extends AbstractController{
 
 
     #[Route('/login', name: 'login')]
-    public function login(Request $request, SessionInterface $session)
+    public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        if($session->get('username')) {
-            return $this->redirectToRoute('homepage');
-        }
-        if ($request->isMethod('POST')) {
-            $username = $request->request->get('username');
-            $password = $request->request->get('password');
+        $error = $authenticationUtils->getLastAuthenticationError();
 
-            $userRepository = $this->entityManager->getRepository(User::class);
-            $user = $userRepository->findOneBy(['username' => $username]);
+        $lastUsername = $authenticationUtils->getLastUsername();
 
-            if ($user && $passwordEncoder->isPasswordValid($user, $password)) {
-                $session->set('username', $user->getUsername());
-                return $this->redirectToRoute('homepage');
-            } else {
-                $this->addFlash('error', 'Invalid login credentials.');
-            }
-            return $this->redirectToRoute('homepage');
-        }
-
-        return $this->render('login.html.twig');
+        return $this->render('login.html.twig', [
+            'controller_name' => 'SecurityController',
+            'last_username' => $lastUsername,
+            'error'         => $error,
+        ]);
     }
 
-    public function logout(Request $request){
 
-    }
 
 }
