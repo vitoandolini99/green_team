@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="cs">
     <head>
         <meta charset="UTF-8">
         <title>Register</title>
     </head>
     <body>
-        <form action="{{ path('register') }}" method="post">
+        <form action="{{ path('register') }}" method="post" onsubmit="window.location.href('login')">
             <label for="username">Username:</label>
             <input type="text" id="username" name="username">
 
