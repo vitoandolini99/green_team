@@ -1,16 +1,9 @@
-html, body{
-    height: 100%;
+html{
     overflow-x: hidden;
+    height: 100%;
 }
 
-body{
+main{
     width: 1000px;
     margin:auto;
-}
-
-.license-container{
-    max-width: 500px;
-    margin: auto;
-    margin-top: 30%;
-    text-align: center;
 }
