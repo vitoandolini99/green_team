@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class LicenseController extends AbstractController{
 
-    #[Route('/license', name: 'License')]
+    #[Route('/license', name: 'license')]
     public function license(): Response {
         return $this->render('license.html.twig');
     }    

@@ -11,7 +11,7 @@ use TCPDF;
 
 class QuizController extends AbstractController{
     
-    #[Route('/vyrazy', name: 'quizexample')]
+    #[Route('/vyrazy', name: 'prvak-quiz1')]
     public function quizexample(): Response {
         $this->forward('App\Controller\CookieController::quizAccessCount');
         
