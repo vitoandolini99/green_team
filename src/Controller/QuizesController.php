@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class QuizesController extends AbstractController{
 
-    #[Route('/prvak', name: 'pero')]
+    #[Route('/prvak', name: 'quizy-prvak')]
     public function quizes(): Response {
         return $this->render('themes/prvak.html.twig');
     }    

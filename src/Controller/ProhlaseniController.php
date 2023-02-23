@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ProhlaseniController extends AbstractController{
 
-    #[Route('/o-nas', name: 'prohlaseni o pristupnosti')]
+    #[Route('/o-nas', name: 'prohlaseni-o-pristupnosti')]
     public function prohlaseni(): Response {
         return $this->render('about.html.twig');
     }    
