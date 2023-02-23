@@ -24,3 +24,9 @@ main{
     background-color: #343a40;
     border-color: white;
 }
+
+.cookies button {
+    background-color: gray;
+    color: white;
+    font-size: 16px;
+}

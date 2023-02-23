@@ -13,7 +13,6 @@
 {% set percentage = 40 %}
 {% set barWidth = percentage * 2 %}
 
-{{ render_esi(path('ch_cookie_consent.show_if_cookie_consent_not_set')) }}
 <header class="navbar-dark bg-dark">
     <br>
     <div class="row">
@@ -59,6 +58,13 @@
         </span>
     </section>
 </main>
+
+<div class="cookies " style="width: 40vw;">
+    <div class="d-flex justify-content-center border border-primary bg-dark">
+    {{ render_esi(path('ch_cookie_consent.show_if_cookie_consent_not_set')) }}
+    </div>
+</div>
+
 <!-- Footer -->
 <footer class="bg-dark text-center text-lg-start" style="left: 0; bottom: 0; width: 100%; position: fixed;">
   <!-- Copyright -->
