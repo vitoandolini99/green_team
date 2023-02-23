@@ -54,3 +54,6 @@
 44. Jsou-li nějaké nalezené: shození stránky, oprava bugů, znovu načíst
 
 https://github.com/Harborn-digital/cookie-consent-bundle
+
+Pro správnou funkčnost je po každém pullu nutno spustit ve složce projektu příkaz 
+```composer install``` 
