@@ -11,8 +11,9 @@ use Symfony\Component\Routing\Annotation\Route;
 class ResultController extends AbstractController{
 
     #[Route('/vysledek', name: 'result')]
-    public function result(): Response {
-        return $this->render('result.html.twig');
+    public function result(Request $request): Response {
+        $percentage = $request->request->get('percentage');
+        return $this->render('result.html.twig',['percentage' => $percentage]);
     }
 }
 ?>
