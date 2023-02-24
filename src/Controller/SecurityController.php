@@ -40,7 +40,8 @@ class SecurityController extends AbstractController{
             $user->setUsername($username);
 
             $psswd = $request->request->get('password');;
-            $user->setPassword($psswd);
+            $hashedPassword = $passwordHasher->hashPassword($user, $psswd);
+            $user->setPassword($hashedPassword);
 
             $user->setRoles(['ROLE_USER']);
 
@@ -59,7 +60,6 @@ class SecurityController extends AbstractController{
         $lastUsername = $authenticationUtils->getLastUsername();
 
         return $this->render('login.html.twig', [
-            'controller_name' => 'SecurityController',
             'last_username' => $lastUsername,
             'error'         => $error,
         ]);

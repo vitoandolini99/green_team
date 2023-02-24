@@ -35,9 +35,16 @@
         </div>
         <div class="col-md-1 text-center">
             <!-- User account navigation control - view account, logout -->
+            {% if is_granted('IS_AUTHENTICATED') %}
             <a href="">
             <i class="fa-solid fa-user fa-2x"></i>
             </a>
+            {% else %}
+            <a href="login">
+                <i class="fa-solid fa-user fa-2x"></i>
+            </a>
+            {% endif %}
+
         </div>
         <div class="col-md-1 text-center">
             {% if is_granted('IS_AUTHENTICATED') %}
