@@ -31,7 +31,7 @@
 </header>
 
 <!-- Main section of the page, progressbar -->
-<main class="homepage-main" style="width: 1000px;">
+<main class="homepage-main" style="text-align: center;">
     <span class="progressbar-container">
     <h3 class="your-progress">Tvůj progres</h3>
     {# simple percentage bar -> width needs to be 100 times greater than multiplication value of percentage in the code above#}
@@ -42,25 +42,25 @@
     <!-- Main menu buttons -->
     <!-- TODO/suggestion: Remove all buttons/links and add them into a collapsible menu on the side of the page instead, eventually fill the page with some text -->
     <section>
-        <span style="padding: 10px">
+        <span style="padding: 10px;">
             <div>
-                <a class="btn btn-dark" id="t1" href="prvak" style="margin-left: 15px">Prvák</a>
+                <a class="quizzes-btn" id="t1" href="prvak" style="margin-left: 15px; margin-top: 50px;">Prvák</a>
             </div>
             <div>
-                <a class="btn btn-dark" id="t2" href="#" style="margin-left: 15px; margin-top: 20px">Druhák</a>
+                <a class="quizzes-btn" id="t1" href="#" style="margin-left: 15px; margin-top: 50px;">Druhák</a>
             </div>
             <div>
-                <a class="btn btn-dark" id="t3" href="#" style="margin-left: 15px; margin-top: 20px">Třeťák</a>
+                <a class="quizzes-btn" id="t1" href="#" style="margin-left: 15px; margin-top: 50px;">Třeťák</a>
             </div>
             <div>
-                <a class="btn btn-dark" id="t4" href="#" style="margin-left: 15px; margin-top: 20px">Čtvrťák</a>
+                <a class="quizzes-btn" id="t1" href="#" style="margin-left: 15px; margin-top: 50px;">Čtvrťák</a>
             </div>
         </span>
     </section>
 </main>
 
 <div class="cookies " style="width: 40vw;">
-    <div class="d-flex justify-content-center border border-primary bg-dark">
+    <div class="d-flex justify-content-center bg-dark">
     {{ render_esi(path('ch_cookie_consent.show_if_cookie_consent_not_set')) }}
     </div>
 </div>

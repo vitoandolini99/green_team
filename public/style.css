@@ -30,3 +30,24 @@ main{
     color: white;
     font-size: 16px;
 }
+
+.quizzes-btn{
+    background-color: #343a40;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    animation-name: expand;
+    width: 150px;
+}
+
+.quizzes-btn:hover{
+    background-color: white;
+    color: black;
+}
+
