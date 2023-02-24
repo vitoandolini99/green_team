@@ -17,19 +17,45 @@
 </style>
 <body>
 <header class="navbar-dark bg-dark">
+
     <br>
-    <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-8 text-center">
-            <h1class="text-light">Prohlášení</h1>
-        </div>
-        <div class="col-md-1 text-end">
-            <!-- User account navigation control - view account, logout -->
-            <a href="">
-            <i class="fa-solid fa-user fa-2x"></i>
-            </a>
-        </div>
+
+  <div class="row">
+    <div class="col-md-3">
+      <a href="{{ path('homepage') }}">
+        <i class="fa-solid fa-arrow-left-long fa-2x" style="margin-left: 50px; color: white;"></i>
+      </a>
     </div>
+    <div class="col-md-6 text-center">
+      <h1 class="text-light">Prohlášení</h1>
+    </div>
+    <div class="col-md-1 text-center">
+      <!-- User account navigation control - view account, logout -->
+      {% if is_granted('IS_AUTHENTICATED') %}
+        <a href="">
+          <i class="fa-solid fa-user fa-2x"></i>
+        </a>
+      {% else %}
+        <a href="login">
+          <i class="fa-solid fa-user fa-2x"></i>
+        </a>
+      {% endif %}
+
+    </div>
+    <div class="col-md-1 text-center">
+      {% if is_granted('IS_AUTHENTICATED') %}
+        <h2>{{ app.user.username }}</h2>
+      {% endif %}
+    </div>
+    <div class="col-md-1 text-start">
+      {% if is_granted('IS_AUTHENTICATED') %}
+        <a href="logout">
+          <i class="fa-solid fa-right-from-bracket fa-2x" ></i>
+        </a>
+      {% endif %}
+    </div>
+
+  </div>
 </header>
   <main>
     <h1>Prohlášení o přístupnosti</h1>
